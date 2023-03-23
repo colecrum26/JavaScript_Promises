@@ -15,16 +15,22 @@ function getList() {
   });
 }
 
-let result = getList();
+// let result = getList();
 
 let idErr = document.querySelector("#error");
 let idList = document.querySelector("#list");
 
 // TODO: Handle the resolved or rejected states of the promise
-result.then((hobbits)=>{
-  console.log(hobbits);
+getList().then((hobbits)=>{
+  // console.log(hobbits);
+  hobbits.forEach((item) => {
+    let li = document.createElement("li");
+    li.textContent = item;
+    idList.appendChild(li);
+  });
 }).catch((err)=>{
-  console.log(`${err} failed to get the list of hobbits.`)
+  idErr.textContent = err.message;
+  // console.log(err);
 })
 
 
